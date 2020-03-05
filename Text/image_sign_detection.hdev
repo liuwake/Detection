@@ -4,62 +4,20 @@
 <interface/>
 <body>
 <c></c>
-<c></c>
+<c>*** Init</c>
 <l>read_image(Image4, 'C:/Users/iwake/OneDrive - wake/Desktop/Mia/Images/MapedSigned.jpg')</l>
-<l>gen_rectangle1 (ROI_0, 2778.89, 649.071, 2850.83, 2294.88)</l>
-<c></c>
-<l>* gen_rectangle1 (ROI_0, 2855.63, 645.569, 3085.85, 2291.38)</l>
-<l>area_center(ROI_0, Area, Row, Column)</l>
-<l>height_width_ratio (ROI_0, Height, Width, Ratio)</l>
-<c></c>
-<l>method :='cloud'</l>
-<c></c>
-<c>*封装区</c>
-<c>*提取区域的位置坐标/选择第四个</c>
-<l>rgb1_to_gray (Image4, GrayImage)</l>
-<l>get_region_convex(ROI_0, Rows, Columns)</l>
-<l>gen_empty_obj(NAME)</l>
-<l>gen_empty_obj(EDGE)</l>
-<c></c>
-<c>*位置</c>
+<l>dev_open_window (0, 0, 512, 512, 'black', WindowHandle)</l>
 <c></c>
 <c></c>
-<c>* 4 ROI</c>
-<l>ROI_SIGN_WIDTH := Width/4</l>
+<c>*** Roi</c>
+<c>** RoiHead</c>
+<l>HeadSignScale := 1</l>
+<l>HeadSignRow := 2815</l>
+<l>HeadSignCol := 1472</l>
+<l>HeadPhi := 0</l>
+<l>region_judge_sign (Image4, EDGE, HeadSignScale, HeadSignRow, HeadSignCol, HeadPhi, WindowHandle, sign)</l>
+<l>disp_obj(EDGE, WindowHandle)</l>
 <c></c>
-<l>gen_rectangle2(Roi_Sign1,Row+Height, Column-0.175*Width, rad(0), ROI_SIGN_WIDTH/2, Height/2)</l>
-<l>gen_rectangle2(Roi_Sign2,Row+3*Height, Column-0.175*Width, rad(0), ROI_SIGN_WIDTH/2, Height/2)</l>
-<l>gen_rectangle2(Roi_Sign3,Row+Height, Column+0.355*Width, rad(0), ROI_SIGN_WIDTH/2, Height/2)</l>
-<l>gen_rectangle2(Roi_Sign4,Row+3*Height, Column+0.355*Width, rad(0), ROI_SIGN_WIDTH/2, Height/2)  </l>
-<c></c>
-<l> concat_obj (Roi_Sign1,NAME,NAME)</l>
-<l> concat_obj (Roi_Sign2,NAME,NAME)</l>
-<l> concat_obj (Roi_Sign3,NAME,NAME)</l>
-<l> concat_obj (Roi_Sign4,NAME,NAME)</l>
-<c></c>
-<l>for Index := 1 to 4 by 1</l>
-<l>    select_obj (NAME, ObjectSelected, Index)</l>
-<c>     *截取对应区域图片</c>
-<l>     reduce_domain(Image4,ObjectSelected, ImageReduced)</l>
-<c>     *区域图片映射为轮廓</c>
-<l>     edges_sub_pix(ImageReduced,Edges, 'canny', 1, 20, 40)</l>
-<l>      concat_obj(Edges,EDGE,EDGE)</l>
-<c>     *得到轮廓长度数组</c>
-<l>     length_xld(Edges, Length)</l>
-<c>     *云团数目大于五则有签字</c>
-<l>     tuple_length(Length,Length1)</l>
-<l>     if(Length1&gt;5)</l>
-<l>                 sign[Index-1]:=1</l>
-<l>     else</l>
-<l>                 sign[Index-1]:=0</l>
-<l>     endif</l>
-<l>endfor</l>
-<c> </c>
-<c></c>
-<c>             </c>
-<c>   </c>
-<c></c>
-<l>return ()</l>
 </body>
 <docu id="main">
 <parameters/>
