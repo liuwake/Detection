@@ -37,7 +37,7 @@
 <l> concat_obj (Roi_Sign3,NAME,NAME)</l>
 <l> concat_obj (Roi_Sign4,NAME,NAME)</l>
 <c></c>
-<l>for Index := 1 to 3 by 1</l>
+<l>for Index := 1 to 4 by 1</l>
 <l>    select_obj (NAME, ObjectSelected, Index)</l>
 <c>     *截取对应区域图片</c>
 <l>     reduce_domain(Image4,ObjectSelected, ImageReduced)</l>
@@ -49,9 +49,9 @@
 <c>     *云团数目大于五则有签字</c>
 <l>     tuple_length(Length,Length1)</l>
 <l>     if(Length1&gt;5)</l>
-<l>                 sign[Index]:=1</l>
+<l>                 sign[Index-1]:=1</l>
 <l>     else</l>
-<l>                 sign[Index]:=0</l>
+<l>                 sign[Index-1]:=0</l>
 <l>     endif</l>
 <l>endfor</l>
 <c> </c>
