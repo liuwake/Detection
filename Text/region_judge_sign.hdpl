@@ -561,10 +561,10 @@ Also, please note that for reproducibility of the output images, the random seed
 <l>RoiSignScale := 0.7 </l>
 <l>RoiSignWidth := RoiSignScale *HeadWidth/4</l>
 <l>RoiSignHeight := RoiSignScale * HeadHeight </l>
-<l>gen_rectangle2(RoiSign1, HeadSignRow+HeadHeight,  HeadSignCol-0.175* HeadWidth, rad(0), RoiSignWidth/2, RoiSignHeight/2)</l>
-<l>gen_rectangle2(RoiSign2, HeadSignRow+3*HeadHeight,  HeadSignCol-0.175*HeadWidth, rad(0), RoiSignWidth/2, RoiSignHeight/2)</l>
-<l>gen_rectangle2(RoiSign3, HeadSignRow+HeadHeight,  HeadSignCol+0.355 * HeadWidth, rad(0), RoiSignWidth/2, RoiSignHeight/2)</l>
-<l>gen_rectangle2(RoiSign4, HeadSignRow+3*HeadHeight,  HeadSignCol+0.355 * HeadWidth, rad(0), RoiSignWidth/2, RoiSignHeight/2) </l>
+<l>gen_rectangle2(RoiSign1, 1*HeadSignRow+1.75*HeadHeight,  HeadSignCol-0.375* HeadWidth, rad(0), RoiSignWidth/2, RoiSignHeight/2)</l>
+<l>gen_rectangle2(RoiSign2, 1*HeadSignRow+1.75*HeadHeight,  HeadSignCol-0.15* HeadWidth, rad(0), RoiSignWidth/2, RoiSignHeight/2)</l>
+<l>gen_rectangle2(RoiSign3, 1*HeadSignRow+1.75*HeadHeight,  HeadSignCol+0.175* HeadWidth, rad(0), RoiSignWidth/2, RoiSignHeight/2)</l>
+<l>gen_rectangle2(RoiSign4, 1*HeadSignRow+1.75*HeadHeight,  HeadSignCol+0.375* HeadWidth, rad(0), RoiSignWidth/2, RoiSignHeight/2) </l>
 <l>gen_empty_obj(RoiSign)</l>
 <l>concat_obj (RoiSign1,RoiSign,RoiSign)</l>
 <l>concat_obj (RoiSign2,RoiSign,RoiSign)</l>
