@@ -4,19 +4,25 @@
 <interface/>
 <body>
 <c></c>
-<c>*** Init</c>
-<l>read_image(Image4, 'C:/Users/iwake/OneDrive - wake/Desktop/Mia/Images/MapedSigned.jpg')</l>
+<c></c>
+<l>dev_close_window ()</l>
 <l>dev_open_window (0, 0, 512, 512, 'black', WindowHandle)</l>
+<c>*** Init</c>
+<l>read_image(Image4, 'C:/Users/iwake/OneDrive - wake/Desktop/Mia/Images/V0.0/CWSL.jpg')</l>
 <c></c>
 <c></c>
 <c>*** Roi</c>
-<c>** RoiHead</c>
+<c>** ROI_Sign_Loc</c>
+<l>* gen_rectangle2 (ROI_Sign_Loc, 881.426, 1372.33, rad(-0.180194), 1249.1, 70.7356)</l>
+<c></c>
+<c></c>
+<c>** </c>
 <l>HeadSignScale := 1</l>
-<l>HeadSignRow := 2815</l>
-<l>HeadSignCol := 1472</l>
+<l>HeadSignRow := 870</l>
+<l>HeadSignCol := 1340</l>
 <l>HeadPhi := 0</l>
-<l>region_judge_sign (Image4, EDGE, HeadSignScale, HeadSignRow, HeadSignCol, HeadPhi, WindowHandle, sign)</l>
-<l>disp_obj(EDGE, WindowHandle)</l>
+<l>region_judge_sign_cwsl_v0 (Image4, HeadSignScale, HeadSignRow, HeadSignCol, HeadPhi, WindowHandle, sign)</l>
+<c></c>
 <c></c>
 </body>
 <docu id="main">

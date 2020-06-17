@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.11.1.1">
+<library/>
+<procedure name="image_judge_sign_judge">
+<interface>
+<io>
+<par name="RoiSign" base_type="iconic" dimension="0"/>
+<par name="GrayImage" base_type="iconic" dimension="0"/>
+</io>
+<oo>
+<par name="SignFeat" base_type="iconic" dimension="0"/>
+</oo>
+<oc>
+<par name="sign" base_type="ctrl" dimension="0"/>
+</oc>
+</interface>
+<body>
+<c></c>
+<c>** Judgement</c>
+<l>gen_empty_obj(SignFeat)</l>
+<l>* SignNum := 4</l>
+<l>count_obj (RoiSign,SignNum )</l>
+<l>SignThreshold := 5.</l>
+<l>for Index := 1 to SignNum by 1</l>
+<l>    select_obj (RoiSign, ObjectSelected, Index)</l>
+<c>     *截取对应区域图片</c>
+<l>     reduce_domain(GrayImage,ObjectSelected, ImageReduced)</l>
+<c>     *区域图片映射为轮廓</c>
+<l>     edges_sub_pix(ImageReduced,Edges, 'canny', 1, 20, 40)</l>
+<l>    concat_obj (Edges, SignFeat, SignFeat)</l>
+<c>     *得到轮廓长度数组</c>
+<l>     length_xld(Edges, Length)</l>
+<c>     *云团数目大于五则有签字</c>
+<l>     tuple_length(Length,Length1)</l>
+<l>     if(Length1 &gt; SignThreshold)</l>
+<l>                 sign[Index-1]:=1</l>
+<l>     else</l>
+<l>                 sign[Index-1]:=0</l>
+<l>     endif</l>
+<l>endfor</l>
+<l>return ()</l>
+</body>
+<docu id="image_judge_sign_judge">
+<parameters>
+<parameter id="GrayImage"/>
+<parameter id="RoiSign"/>
+<parameter id="SignFeat"/>
+<parameter id="sign"/>
+</parameters>
+</docu>
+</procedure>
+</hdevelop>
