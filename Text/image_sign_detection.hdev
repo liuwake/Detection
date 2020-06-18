@@ -21,7 +21,7 @@
 <l>HeadSignRow := 870</l>
 <l>HeadSignCol := 1340</l>
 <l>HeadPhi := 0</l>
-<l>region_judge_sign_cwsl_v0 (Image4, HeadSignScale, HeadSignRow, HeadSignCol, HeadPhi, WindowHandle, sign)</l>
+<l>mia_sign_cwsl_v0 (Image4, HeadSignScale, HeadSignRow, HeadSignCol, HeadPhi, WindowHandle, sign)</l>
 <c></c>
 <c></c>
 </body>

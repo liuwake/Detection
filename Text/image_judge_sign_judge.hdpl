@@ -5,7 +5,7 @@
 <interface>
 <io>
 <par name="RoiSign" base_type="iconic" dimension="0"/>
-<par name="GrayImage" base_type="iconic" dimension="0"/>
+<par name="OriImage" base_type="iconic" dimension="0"/>
 </io>
 <oo>
 <par name="SignFeat" base_type="iconic" dimension="0"/>
@@ -16,6 +16,12 @@
 </interface>
 <body>
 <c></c>
+<c>*** Porg</c>
+<c>** Pre</c>
+<l>rgb1_to_gray (OriImage, GrayImage)</l>
+<l>* get_region_convex(ROI_0, Rows, Columns)</l>
+<c></c>
+<c></c>
 <c>** Judgement</c>
 <l>gen_empty_obj(SignFeat)</l>
 <l>* SignNum := 4</l>
@@ -24,7 +30,7 @@
 <l>for Index := 1 to SignNum by 1</l>
 <l>    select_obj (RoiSign, ObjectSelected, Index)</l>
 <c>     *截取对应区域图片</c>
-<l>     reduce_domain(GrayImage,ObjectSelected, ImageReduced)</l>
+<l>    reduce_domain (GrayImage, ObjectSelected, ImageReduced)</l>
 <c>     *区域图片映射为轮廓</c>
 <l>     edges_sub_pix(ImageReduced,Edges, 'canny', 1, 20, 40)</l>
 <l>    concat_obj (Edges, SignFeat, SignFeat)</l>
@@ -38,11 +44,14 @@
 <l>                 sign[Index-1]:=0</l>
 <l>     endif</l>
 <l>endfor</l>
+<c></c>
+<c></c>
+<c></c>
 <l>return ()</l>
 </body>
 <docu id="image_judge_sign_judge">
 <parameters>
-<parameter id="GrayImage"/>
+<parameter id="OriImage"/>
 <parameter id="RoiSign"/>
 <parameter id="SignFeat"/>
 <parameter id="sign"/>
