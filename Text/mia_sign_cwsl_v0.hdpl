@@ -42,7 +42,7 @@
 <l>image_judge_sign_judge (RoiSign, Image4, SignFeat, sign)</l>
 <c></c>
 <c>*** Display</c>
-<l>disp_obj(SignFeat,WindowHandle)</l>
+<l>dev_display(SignFeat)</l>
 <l>* stop()</l>
 <l>return ()</l>
 </body>
