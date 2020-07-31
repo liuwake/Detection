@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.11.1.1">
+<procedure name="image_detect_seal">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="BarcodeRow" base_type="ctrl" dimension="0"/>
+</ic>
+<oc>
+<par name="Area" base_type="ctrl" dimension="0"/>
+<par name="seal" base_type="ctrl" dimension="0"/>
+</oc>
+</interface>
+<body>
+<c>*** Initial</c>
+<c>** Initializing Location</c>
+<c></c>
+<l>* BarcodeRow := 1000</l>
+<l>* BarcodeCol := 0</l>
+<c></c>
+<l>* MoneyRow := 0</l>
+<l>* MoneyCol := 0</l>
+<c></c>
+<c></c>
+<c>** Initializing Image</c>
+<l>*     read_image (Image, 'C:/Users/iwake/OneDrive - wake/Desktop/Mia/Images/V0.0/3 (2).jpg')</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>*     get_domain (Image, Domain)</l>
+<l>*     crop_part (Image, ImagePart, BarcodeRow, 0, Width, Height)</l>
+<l>    rectangle1_domain(Image,ImageReduced, BarcodeRow, 0, Height, Width)</l>
+<l>    reduce_domain (Image,ImageReduced,  ImageReduced2)</l>
+<c>    </c>
+<c>*** Progressing</c>
+<l>    decompose3 (ImageReduced2, Red, Green, Blue)</l>
+<l>trans_from_rgb (Red, Green, Blue, Hue, Saturation, Image, 'hsv')</l>
+<l>    threshold (Saturation, HighSaturation, 100, 255)</l>
+<l>    reduce_domain (Hue, HighSaturation, HueHighSaturation)</l>
+<l>    threshold (HueHighSaturation, Red, 200, 255)</l>
+<l>    connection (Red, ConnectedRegions)</l>
+<l>    select_shape_std (ConnectedRegions, SelectedRegions, 'max_area', 0)</l>
+<l>    closing_circle (SelectedRegions, Red, 3.5)</l>
+<l>    reduce_domain (Image, Red, ImageReduced)</l>
+<l>area_center (Red, Area, Area, Column)</l>
+<l>*     stop ()</l>
+<l>    dev_display (HueHighSaturation)</l>
+<l>    dev_display (ImageReduced)</l>
+<l>    if (Area&gt;5000)</l>
+<l>        seal := 1</l>
+<l>    endif</l>
+<l>return ()</l>
+<l>return ()</l>
+</body>
+<docu id="image_detect_seal">
+<parameters>
+<parameter id="Area"/>
+<parameter id="BarcodeRow"/>
+<parameter id="Image"/>
+<parameter id="seal"/>
+</parameters>
+</docu>
+</procedure>
+</hdevelop>

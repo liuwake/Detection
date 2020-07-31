@@ -6,41 +6,9 @@
 <c>* color_simple.hdev: segment yellow cable in HSV color space</c>
 <l>dev_close_window ()</l>
 <l>dev_open_window (0, 0, 640, 480, 'black', WindowHandle)</l>
-<c>*** Initial</c>
-<c>** Initializing Location</c>
+<l>read_image (Image, 'C:/Users/iwake/OneDrive - wake/Desktop/Mia/Images/V0.0/3 (2).jpg')</l>
+<l>image_detect_seal (Image, 0, Row, seal)</l>
 <c></c>
-<l>BarcodeRow := 1000</l>
-<l>BarcodeCol := 0</l>
-<c></c>
-<l>MoneyRow := 0</l>
-<l>MoneyCol := 0</l>
-<c></c>
-<c></c>
-<c>** Initializing Image</c>
-<l>    read_image (Image, 'C:/Users/iwake/OneDrive - wake/Desktop/Mia/Images/V0.0/3 (2).jpg')</l>
-<l>    get_image_size (Image, Width, Height)</l>
-<l>*     get_domain (Image, Domain)</l>
-<l>*     crop_part (Image, ImagePart, BarcodeRow, 0, Width, Height)</l>
-<l>    rectangle1_domain(Image,ImageReduced, BarcodeRow, 0, Height, Width)</l>
-<l>    reduce_domain (Image,ImageReduced,  ImageReduced2)</l>
-<c>    </c>
-<c>*** Progressing</c>
-<l>    decompose3 (ImageReduced2, Red, Green, Blue)</l>
-<l>    trans_from_rgb (Red, Green, Blue, Hue, Saturation, Intensity, 'hsv')</l>
-<l>    threshold (Saturation, HighSaturation, 100, 255)</l>
-<l>    reduce_domain (Hue, HighSaturation, HueHighSaturation)</l>
-<l>    threshold (HueHighSaturation, Red, 200, 255)</l>
-<l>    connection (Red, ConnectedRegions)</l>
-<l>    select_shape_std (ConnectedRegions, SelectedRegions, 'max_area', 0)</l>
-<l>    closing_circle (SelectedRegions, Red, 3.5)</l>
-<l>    reduce_domain (Image, Red, ImageReduced)</l>
-<l>    area_center (Red, Area, Row, Column)</l>
-<l>*     stop ()</l>
-<l>    dev_display (HueHighSaturation)</l>
-<l>    dev_display (ImageReduced)</l>
-<l>    if (Area&gt;5000)</l>
-<l>        seal := 1</l>
-<l>    endif</l>
 <c></c>
 <c></c>
 </body>
