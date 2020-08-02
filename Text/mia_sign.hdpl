@@ -7,11 +7,10 @@
 <par name="Image4" base_type="iconic" dimension="0"/>
 </io>
 <ic>
-<par name="HeadSignScale" base_type="ctrl" dimension="0"/>
 <par name="HeadSignRow" base_type="ctrl" dimension="0"/>
 <par name="HeadSignCol" base_type="ctrl" dimension="0"/>
-<par name="HeadPhi" base_type="ctrl" dimension="0"/>
 <par name="WindowHandle" base_type="ctrl" dimension="0"/>
+<par name="SignWidth" base_type="ctrl" dimension="0"/>
 </ic>
 <oc>
 <par name="sign" base_type="ctrl" dimension="0"/>
@@ -19,21 +18,18 @@
 </interface>
 <body>
 <c>* ----Package</c>
-<c></c>
+<c>** 无倾斜</c>
 <c>** 数据适配CWDL</c>
 <c></c>
-<l>HeadWidth :=  HeadSignScale * 2200</l>
-<l>HeadHeight := HeadSignScale * 200</l>
-<l>* gen_rectangle2(ROI_0, HeadSignRow , HeadSignCol, HeadPhi ,HeadWidth/2, HeadHeight/2)</l>
+<l>SignWidthNormal := 2200</l>
+<l>SignScale := SignWidth/SignWidthNormal </l>
+<l>HeadWidth := SignScale * 300</l>
+<l>HeadHeight := SignScale * 150</l>
+<l>gen_rectangle2(RoiSign1, HeadSignRow + 0.4*HeadHeight , HeadSignCol + 0.17*SignWidth, rad(0),HeadWidth/2 ,HeadHeight/2)</l>
+<l>gen_rectangle2(RoiSign2, HeadSignRow + 0.4*HeadHeight , HeadSignCol + 0.38*SignWidth, rad(0),HeadWidth/2 ,HeadHeight/2)</l>
+<l>gen_rectangle2(RoiSign3, HeadSignRow + 0.4*HeadHeight , HeadSignCol + 0.62*SignWidth, rad(0),HeadWidth/2 ,HeadHeight/2)</l>
 <c></c>
-<c>** RoiSign</c>
-<l>RoiSignScale := 0.7 </l>
-<l>RoiSignWidth := RoiSignScale *HeadWidth/4</l>
-<l>RoiSignHeight := RoiSignScale * HeadHeight </l>
-<l>gen_rectangle2(RoiSign1, 1*HeadSignRow+0.6*HeadHeight,  HeadSignCol+0.26* HeadWidth, rad(0), RoiSignWidth/2.5, RoiSignHeight/2.5)</l>
-<l>gen_rectangle2(RoiSign2, 1*HeadSignRow+0.6*HeadHeight,  HeadSignCol+0.47* HeadWidth, rad(0), RoiSignWidth/2.5, RoiSignHeight/2.5)</l>
-<l>gen_rectangle2(RoiSign3, 1*HeadSignRow+0.6*HeadHeight,  HeadSignCol+0.72* HeadWidth, rad(0), RoiSignWidth/2.5, RoiSignHeight/2.5)</l>
-<l>* gen_rectangle2(RoiSign4, 1*HeadSignRow+1.9*HeadHeight,  HeadSignCol+0.375* HeadWidth, rad(0), RoiSignWidth/2, RoiSignHeight/2.5) </l>
+<c></c>
 <l>gen_empty_obj(RoiSign)</l>
 <l>concat_obj (RoiSign1,RoiSign,RoiSign)</l>
 <l>concat_obj (RoiSign2,RoiSign,RoiSign)</l>
@@ -52,11 +48,10 @@
 </body>
 <docu id="mia_sign">
 <parameters>
-<parameter id="HeadPhi"/>
 <parameter id="HeadSignCol"/>
 <parameter id="HeadSignRow"/>
-<parameter id="HeadSignScale"/>
 <parameter id="Image4"/>
+<parameter id="SignWidth"/>
 <parameter id="WindowHandle"/>
 <parameter id="sign"/>
 </parameters>
