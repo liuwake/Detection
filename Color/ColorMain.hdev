@@ -7,7 +7,7 @@
 <l>dev_close_window ()</l>
 <l>dev_open_window (0, 0, 640, 480, 'black', WindowHandle)</l>
 <l>read_image (Image, 'C:/Users/iwake/OneDrive - wake/Desktop/Mia/Images/V0.0/3 (2).jpg')</l>
-<l>image_detect_seal (Image, 0, Row, seal)</l>
+<l>image_detect_seal (Image, 0, 5000, Row, seal)</l>
 <c></c>
 <c></c>
 <c></c>
