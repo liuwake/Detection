@@ -9,7 +9,7 @@ git clone -b v0.6 https://github.com/facebookresearch/detectron2.git && python -
 ```
 - V0.6 binary
 
-- coco
+- [coco](https://cocodataset.org/#download)
   ```shell
   wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip
   wget http://images.cocodataset.org/zips/val2017.zip
@@ -23,6 +23,12 @@ git clone -b v0.6 https://github.com/facebookresearch/detectron2.git && python -
 ### test
 `python ./tools/train_net.py --config-file ./configs/COCO-Detection/retinanet_R_50_FPN_1x.yaml --eval-only MODEL.WEIGHTS detectron2://COCO-Detection/retinanet_R_50_FPN_1x/190397773/model_final_bfca0b.pkl`
 
+### train
+- Edit `configs/Base-RCNN-FPN.yaml` down the `LR` from `0.02` to `0.0025` or add prefix `SOLVER.BASE_LR 0.0025`.
+- `--num-gpus 1 SOLVER.IMS_PER_BATCH 1 INPUT.MIN_SIZE_TRAIN "(400,)" DATALOADER.NUM_WORKERS 4` -> Full GPU load, 2.54 VRAM, 1 CPU load
+  ```
+  python ./tools/train_net.py --config-file ./configs/COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml --num-gpus 1 SOLVER.IMS_PER_BATCH 1 INPUT.MIN_SIZE_TRAIN "(400,)" DATASETS.TRAIN "('coco_2017_train',)" DATALOADER.NUM_WORKERS 4
+  ```
 ### debug
 - `python ./tools/train_net.py --config-file ./configs/COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml --num-gpus 1 SOLVER.IMS_PER_BATCH 1 INPUT.MIN_SIZE_TRAIN (400,) DATASETS.TRAIN ('coco_2017_val',) DATALOADER.NUM_WORKERS 0`
   - BUG: `  "Predicted boxes or scores contain Inf/NaN. Training has diverged."FloatingPointError: Predicted boxes or scores contain Inf/NaN. Training has diverged.`
